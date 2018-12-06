@@ -9,6 +9,7 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
 import pandas as pd
 import update_GUI
+import numpy as np
 import matplotlib.patches as patches
 # import GetData
 # import pandas as pd
@@ -63,11 +64,17 @@ class BigData_UI(QtWidgets.QMainWindow):
 
         self.CentralWidget.setLayout(self.main_hbox)
 
-        df =  pd.read_csv("Data.csv")
-        a = df["x"]
+        df =  pd.read_csv("MPC.csv")
+        a = df["Close"]
+
+        pred = pd.read_csv("MPC_pred.csv")
+        date = range(201, 251)
+        b = pred["pred"]
+
 
         self.ax = self.canvas.figure.subplots()
-        self.ax.plot(a)
+        self.ax.plot(a, color = "blue")
+        self.ax.plot(date, b, color = "red")
         # self.ax.plot(a, "o")
         self.btn_Update.clicked.connect(self.btn_Update_clicked)
 
