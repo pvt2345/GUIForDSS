@@ -8,6 +8,7 @@ from matplotlib.backends.qt_compat import QtCore, QtWidgets, is_pyqt5
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
 import pandas as pd
+import update_GUI
 import matplotlib.patches as patches
 # import GetData
 # import pandas as pd
@@ -67,10 +68,17 @@ class BigData_UI(QtWidgets.QMainWindow):
 
         self.ax = self.canvas.figure.subplots()
         self.ax.plot(a)
-        self.ax.plot(a, "o")
+        # self.ax.plot(a, "o")
+        self.btn_Update.clicked.connect(self.btn_Update_clicked)
 
         self.show()
 
+    def btn_Update_clicked(self):
+            self.update_window = update_GUI.Update_UI()
+            self.update_window.show()
+            # Update_UI = update_GUI.Update_UI()
+        # TextMining_Window.show()
+        # sys.exit(app.exec_())
 
     # def condition_ComboBox_currentIndexChanged(self):
     #     try:
